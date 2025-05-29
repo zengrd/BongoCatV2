@@ -1,0 +1,34 @@
+项目整体结构
+核心技术栈
+BongoCat 是一个基于 Tauri 2.0 框架开发的桌面应用程序，使用 Vue 3 + TypeScript 作为前端技术栈。 
+该项目主要功能是在桌面上显示一个可交互的 Live2D 猫咪模型，能够响应用户的鼠标和键盘操作。 
+
+目录结构详细分析
+1.前端核心目录 (src/)
+pages/: 包含主界面 (main/) 和偏好设置页面 (preference/)
+components/: 可复用的 Vue 组件
+stores/: Pinia 状态管理，包含猫咪设置 (cat.ts)、模型管理 (model.ts) 等
+composables/: Vue 组合式函数，如设备输入处理 (useDevice) 和模型控制 (useModel)
+utils/: 工具函数，重要的是 live2d.ts 负责 Live2D 模型的加载和控制
+
+2.Tauri 后端目录 (src-tauri/)
+包含 Rust 后端代码和 Tauri 配置文件，负责窗口管理、系统交互等功能。
+
+3.静态资源目录 (public/)
+models/: 存储 Live2D 模型文件
+standard/: 标准模式的 Live2D 模型
+keyboard/: 键盘模式的 Live2D 模型
+每个模式包含 .model3.json 配置文件和相应的动作文件 (.motion3.json)
+
+4.配置文件
+package.json: 项目依赖和脚本配置，使用了 pixi-live2d-display 库处理 Live2D
+tauri.conf.json: Tauri 应用配置，定义了窗口属性和构建目标
+
+平台支持
+目前支持Windows、Mac、Linux平台，未来会支持iOS、Android平台
+
+未来功能规划
+1.添加更多Live2D模型
+2.支持iOS、Android平台
+3.支持Live2D和用户语音交互和打字交互功能，让live2D模型操作电脑或者手机
+4.支持本地RAG库，让live2D模型可以回答用户问题
